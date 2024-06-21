@@ -1,8 +1,17 @@
-# React + Vite
+# F1 Predictor
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This predictor uses a simple prediction model which determines the average 
+finishing position of each driver this season and adds it to their average 
+finishing position in any previous races at the circuit. The total of the 
+averages are then sorted from least to greatest and that gives us the predicted 
+order from 1st to 20th. This attempts to take into account the driver and teams 
+current competitiveness as well as how well they have performed at that 
+specific circuit in the past.
 
-Currently, two official plugins are available:
+There are limitations to this model. One example is Lewis Hamilton. Because 
+Hamilton had an extremely competitive car for years, his average finishing 
+position at any given circuit in past races is likely to be very low. This 
+means he will be placed higher in predictions even though his car is not very 
+competitive this year.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project uses the Ergast F1 API found at http://ergast.com/mrd/

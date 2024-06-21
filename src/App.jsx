@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Fab from '@mui/material/Fab'
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import './App.css'
+import HowItWorksModal from './HowItWorksModal'
 
 function App() {
   const [predictedResults, setPredictedResults] = useState([])
   const [round, setRound] = useState(1)
   const [races, setRaces] = useState([])
   const [loading, setLoading] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [showResults, setShowResults] = useState(false)
 
   useEffect(() => {
     getRacesThisSeason()
@@ -14,6 +19,7 @@ function App() {
   
   const predictResults = async () => {
     setLoading(true)
+    setShowResults(true)
     let driverScores = []
     const drivers = await getCurrentDrivers()
     const driverObjects = {}
@@ -122,7 +128,7 @@ function App() {
           <h3>Predicting Results</h3>
           <progress value={null} />
         </>
-      ) : (
+      ) : showResults && (
         <>
           <h3>Predicted Results</h3>
           <ol>
@@ -132,6 +138,18 @@ function App() {
           </ol>
         </>
       )}
+      <Fab
+        color="primary"
+        onClick={() => setModalOpen(true)}
+        style={{
+          position: "absolute",
+          right: "25px",
+          bottom: "25px",
+        }}
+      >
+        <InfoOutlinedIcon />
+      </Fab>
+      <HowItWorksModal open={modalOpen} handleClose={() => setModalOpen(false)} />
     </>
   )
 }
