@@ -34,7 +34,7 @@ function App() {
     const res = parseInt(sessionStorage.getItem(`${driver}-curr`))
     return res
       ? res
-      : axios.get(`http://ergast.com/api/f1/current/drivers/${driver}/results.json`)
+      : axios.get(`https://ergast.com/api/f1/current/drivers/${driver}/results.json`)
           .then((results) => {
             const averageResult = getAverageResults(results.data)
             sessionStorage.setItem(`${driver}-curr`, averageResult)
@@ -49,7 +49,7 @@ function App() {
     const res = parseInt(sessionStorage.getItem(`${driver}-${circuit}`))
     return res
       ? res
-      : axios.get(`http://ergast.com/api/f1/circuits/${circuit}/drivers/${driver}/results.json`)
+      : axios.get(`https://ergast.com/api/f1/circuits/${circuit}/drivers/${driver}/results.json`)
           .then((results) => {
             const averageResult = getAverageResults(results.data)
             sessionStorage.setItem(`${driver}-${circuit}`, averageResult)
@@ -81,7 +81,7 @@ function App() {
   }
 
   const getRaceFromRoundThisSeason = (round) => {
-    return axios.get(`http://ergast.com/api/f1/current/${round}.json`)
+    return axios.get(`https://ergast.com/api/f1/current/${round}.json`)
       .then((results) => {
         return results?.data?.MRData?.RaceTable?.Races[0]
       })
@@ -91,7 +91,7 @@ function App() {
   }
 
   const getRacesThisSeason = () => {
-    return axios.get(`http://ergast.com/api/f1/current.json`)
+    return axios.get(`https://ergast.com/api/f1/current.json`)
       .then((results) => {
         setRaces(results?.data?.MRData?.RaceTable?.Races)
       })
