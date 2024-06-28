@@ -15,6 +15,7 @@ const HowItWorksModal = ({ open, handleClose }) => {
       <div
         style={{
           backgroundColor: "white",
+          color: "black",
           width: "80%",
           height: "auto",
           padding: "1rem",

@@ -142,7 +142,7 @@ function App() {
         color="primary"
         onClick={() => setModalOpen(true)}
         style={{
-          position: "absolute",
+          position: "fixed",
           right: "25px",
           bottom: "25px",
         }}
